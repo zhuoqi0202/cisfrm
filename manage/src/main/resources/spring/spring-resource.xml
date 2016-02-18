@@ -15,45 +15,32 @@
 
     <context:component-scan base-package="com.sinosoft.cisfrm.manage.resource"/>
 
+    <!--
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
-        <!-- 数据源驱动类可不写，Druid默认会自动根据URL识别DriverClass -->
         <property name="driverClassName" value="${jdbc.default.driverClass}"/>
 
-        <!-- 基本属性 url、user、password -->
         <property name="url" value="${jdbc.default.url}"/>
         <property name="username" value="${jdbc.default.username}"/>
         <property name="password" value="${jdbc.default.password}"/>
 
-        <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="${jdbc.default.initialSize}"/>
         <property name="minIdle" value="${jdbc.default.minIdle}"/>
         <property name="maxActive" value="${jdbc.default.maxActive}"/>
 
-        <!-- 配置获取连接等待超时的时间 -->
         <property name="maxWait" value="${jdbc.default.maxWait}"/>
 
-        <!-- 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒 -->
         <property name="timeBetweenEvictionRunsMillis" value="${jdbc.default.timeBetweenEvictionRunsMillis}"/>
 
-        <!-- 配置一个连接在池中最小生存的时间，单位是毫秒 -->
         <property name="minEvictableIdleTimeMillis" value="${jdbc.default.minEvictableIdleTimeMillis}"/>
 
-        <!-- 超过时间限制是否回收 -->
         <property name="removeAbandoned" value="${jdbc.default.removeAbandoned}"/>
-        <!-- 超过时间限制多长； -->
         <property name="removeAbandonedTimeout" value="${jdbc.default.removeAbandonedTimeout}"/>
-        <!-- 用来检测连接是否有效的sql，要求是一个查询语句-->
         <property name="validationQuery" value="${jdbc.default.validationQuery}"/>
-        <!-- 申请连接的时候检测 -->
         <property name="testWhileIdle" value="${jdbc.default.testWhileIdle}"/>
-        <!-- 申请连接时执行validationQuery检测连接是否有效，配置为true会降低性能 -->
         <property name="testOnBorrow" value="${jdbc.default.testOnBorrow}"/>
-        <!-- 归还连接时执行validationQuery检测连接是否有效，配置为true会降低性能  -->
         <property name="testOnReturn" value="${jdbc.default.testOnReturn}"/>
-        <!--属性类型是字符串，通过别名的方式配置扩展插件，常用的插件有：
-                监控统计用的filter:stat
-                日志用的filter:log4j
-               防御SQL注入的filter:wall -->
+
         <property name="filters" value="${jdbc.default.filters}"/>
     </bean>
+-->
 </beans>

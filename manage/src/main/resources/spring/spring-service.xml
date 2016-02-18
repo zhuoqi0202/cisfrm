@@ -11,12 +11,7 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
     <dubbo:application name="cisfrm_manage"/>
 
-    <!-- 使用multicast广播注册中心暴露服务地址 -->
-    <dubbo:registry address="multicast://224.5.6.7:2388" />
+    <dubbo:registry address="zookeeper://localhost:2181" />
+    <dubbo:reference id="testService" interface="com.sinosoft.cisfrm.user.service.TestService" />
 
-    <!-- 用dubbo协议在20880端口暴露服务 -->
-    <dubbo:protocol name="dubbo" port="20880" />
-
-
-    <dubbo:annotation package="com.sinosoft.cisfrm.manage.controller"/>
 </beans>

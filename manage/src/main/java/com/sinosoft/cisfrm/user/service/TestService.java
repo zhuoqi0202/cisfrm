@@ -1,4 +1,4 @@
-package com.sinosoft.cisfrm.manage.service;
+package com.sinosoft.cisfrm.user.service;
 
 import org.springframework.stereotype.Service;
 
