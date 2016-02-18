@@ -12,6 +12,22 @@
     <url>http://maven.apache.org</url>
     <dependencies>
         <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>dubbo</artifactId>
+            <version>${dubbo.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>${spring.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-websocket</artifactId>
             <version>${spring.version}</version>
@@ -62,6 +78,34 @@
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
             <version>${guava.version}</version>
+        </dependency>
+        <!-- json -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${jackson.version}</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>${jackson.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -173,22 +217,36 @@
             <artifactId>kaptcha</artifactId>
             <version>${kaptcha.version}</version>
         </dependency>
+
+        <!-- elasticsearch -->
+        <!--
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-data-elasticsearch</artifactId>
+            <version>${spring.data.elasticsearch.version}</version>
+        </dependency>
+        -->
         <dependency>
             <groupId>org.elasticsearch</groupId>
             <artifactId>elasticsearch</artifactId>
             <version>${es.version}</version>
         </dependency>
-
+        <!-- j2ee api -->
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
             <version>${javaee.version}</version>
             <scope>provided</scope>
         </dependency>
-
+        <!-- websocket api -->
+        <dependency>
+            <groupId>javax.websocket</groupId>
+            <artifactId>javax.websocket-api</artifactId>
+            <version>${websocket.version}</version>
+        </dependency>
     </dependencies>
     <build>
-        <finalName>cisfrm-manage</finalName>
+        <finalName>manage</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
