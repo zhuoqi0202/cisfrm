@@ -11,7 +11,6 @@
        http://www.springframework.org/schema/context/spring-context.xsd">
     <dubbo:application name="cisfrm_manage"/>
 
-    <dubbo:registry address="zookeeper://localhost:2181" />
-    <dubbo:reference id="testService" interface="com.sinosoft.cisfrm.user.service.TestService" />
-
+    <dubbo:registry address="zookeeper://localhost:2181"/>
+    <dubbo:reference id="userService" interface="com.sinosoft.cisfrm.user.service.UserService" />
 </beans>
