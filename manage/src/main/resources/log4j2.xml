@@ -39,7 +39,8 @@
         </root>
         <logger name="com.sinosoft.cisfrm" level="info"/>
         <logger name="org.apache" level="info"/>
-        <logger name="com.jfinal" level="info"/>
+        <logger name="org.springframework" level="info"/>
+        <logger name="org.hibernate" level="info" />
     </loggers>
 </configuration>
 

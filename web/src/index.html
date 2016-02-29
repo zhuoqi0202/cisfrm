@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>风险监测信息系统-公开数据</title>
+    <!--
+    <link rel="stylesheet" href="bower_components/jeasyui/themes/bootstrap/easyui.css">
+    -->
+    <link rel="stylesheet" href="styles/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" href="bower_components/jeasyui/themes/icon.css">
+    <link rel="stylesheet" href="bower_components/jeasyui/themes/color.css">
+    <!--
+    <link rel="stylesheet" href="node_modules/amazeui/dist/css/amazeui.flat.min.css">
+    -->
+    <link rel="stylesheet" href="bower_components/ztree_v3/css/zTreeStyle/zTreeStyle.css">
+    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="stylesheet" href="styles/ztree_icon.less">
+    <script src="bower_components/jquery/dist/jquery.min.js"></script><!--ignore-->
+    <script>
+        $.ajax({
+            url: '/cisfrm/isLogin',
+            async: false,
+            success: function (data) {
+                if (!data) {
+                    window.location.href = '/login.html';
+                }
+            }
+        });
+    </script><!--ignore-->
+</head>
+<body class="easyui-layout">
+<div region="north" style="height:61px;">
+    <div class="warp1">
+        <div class="top">
+            <div class="logo">
+                <img src="images/logo.jpg">
+            </div>
+            <div class="top_tit"><span>|</span><h4>风险监测信息系统-公开数据</h4>
+                <div class="clear"></div>
+            </div>
+            <ul class="top_ul">
+                <li>
+                    <a href="javascript:void(0);" id="main_user"><i class="fa fa-user"></i></a>
+                    <div id="main_user_menu" style="width:150px;">
+                        <div>设置</div>
+                        <div class="menu-sep"></div>
+                        <div id="logout">退出</div>
+                    </div>
+                </li>
+            </ul>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div region="west" title="导航" style="width:256px;">
+    <ul class="ztree" id="main_nav"></ul>
+</div>
+<div region="center">
+    <div class="easyui-tabs" fit="true" border="false" id="tabs">
+        <div title="首页" style="width:100%;height:100%;">
+            <h1>首页</h1>
+        </div>
+    </div>
+    <div id="tabsMenu" class="easyui-menu" style="width:120px;">
+        <div name="close">关闭</div>
+        <div name="Other">关闭其他</div>
+        <div name="All">关闭所有</div>
+    </div>
+</div>
+<script src="bower_components/jeasyui/jquery.easyui.min.js"></script>
+<script src="bower_components/jeasyui/locale/easyui-lang-zh_CN.js"></script>
+<!--[if lt IE 9]>
+<script src="bower_components/modernizr/modernizr.js"></script>w
+<![endif]-->
+<!--
+<script src="node_modules/amazeui/dist/js/amazeui.min.js"></script>
+-->
+<script src="bower_components/ztree_v3/js/jquery.ztree.core-3.5.min.js"></script>
+<script src="scripts/index.js"></script>
+</body>
+</html>

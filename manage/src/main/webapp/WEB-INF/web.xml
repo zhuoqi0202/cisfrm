@@ -9,37 +9,7 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>classpath:spring/spring-bootstrap.xml</param-value>
     </context-param>
-
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-    <listener>
-        <listener-class>
-            org.springframework.web.context.request.RequestContextListener
-        </listener-class>
-    </listener>
-    <servlet>
-        <servlet-name>spring</servlet-name>
-        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
-        <init-param>
-            <param-name>contextConfigLocation</param-name>
-            <param-value>classpath:spring/spring-mvc.xml</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>spring</servlet-name>
-        <url-pattern>/</url-pattern>
-    </servlet-mapping>
-    <jsp-config>
-        <jsp-property-group>
-            <url-pattern>*.jsp</url-pattern>
-            <url-pattern>*.jspf</url-pattern>
-            <page-encoding>UTF-8</page-encoding>
-            <scripting-invalid>true</scripting-invalid>
-            <trim-directive-whitespaces>true</trim-directive-whitespaces>
-            <default-content-type>text/html</default-content-type>
-        </jsp-property-group>
-    </jsp-config>
 </web-app>

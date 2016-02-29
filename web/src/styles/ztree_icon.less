@@ -1,0 +1,81 @@
+@base_prefix: .ztree li span.button;
+@base_path: '../images/ztree';
+@base_suffix: '.png?__sprite';
+.base_icon (@path) {
+  margin-right: 2px;
+  vertical-align: top;
+  *vertical-align: middle;
+  background: url(@path) no-repeat scroll 0 0 transparent;
+}
+
+@{base_prefix} {
+  &.book_ico_open {
+    .base_icon('@{base_path}/book@{base_suffix}');
+  }
+  &.book_ico_close {
+    .base_icon('@{base_path}/book@{base_suffix}');
+  }
+  &.book_ico_docu {
+    .base_icon('@{base_path}/book@{base_suffix}');
+  }
+}
+
+@{base_prefix} {
+  &.chart_ico_open {
+    .base_icon('@{base_path}/chart@{base_suffix}');
+  }
+  &.chart_ico_close {
+    .base_icon('@{base_path}/chart@{base_suffix}');
+  }
+  &.chart_ico_docu {
+    .base_icon('@{base_path}/chart@{base_suffix}');
+  }
+}
+
+@{base_prefix} {
+  &.cog_ico_open {
+    .base_icon('@{base_path}/cog@{base_suffix}');
+  }
+  &.cog_ico_close {
+    .base_icon('@{base_path}/cog@{base_suffix}');
+  }
+  &.cog_ico_docu {
+    .base_icon('@{base_path}/cog@{base_suffix}');
+  }
+}
+
+@{base_prefix} {
+  &.users_ico_open {
+    .base_icon('@{base_path}/users@{base_suffix}');
+  }
+  &.users_ico_close {
+    .base_icon('@{base_path}/users@{base_suffix}');
+  }
+  &.users_ico_docu {
+    .base_icon('@{base_path}/users@{base_suffix}');
+  }
+}
+
+@{base_prefix} {
+  &.map_ico_open {
+    .base_icon('@{base_path}/map@{base_suffix}');
+  }
+  &.map_ico_close {
+    .base_icon('@{base_path}/map@{base_suffix}');
+  }
+  &.map_ico_docu {
+    .base_icon('@{base_path}/map@{base_suffix}');
+  }
+}
+
+@{base_prefix} {
+  &.company_ico_open {
+    .base_icon('@{base_path}/company@{base_suffix}');
+  }
+  &.company_ico_close {
+    .base_icon('@{base_path}/company@{base_suffix}');
+  }
+  &.company_ico_docu {
+    .base_icon('@{base_path}/company@{base_suffix}');
+  }
+}

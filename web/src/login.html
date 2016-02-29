@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>登录</title>
+    <link rel="stylesheet" href="styles/base.css"/>
+    <link rel="stylesheet" href="styles/bootstrap.min.css"/>
+    <link rel="stylesheet" href="styles/login.css"/>
+    <script src="bower_components/jquery/dist/jquery.min.js"></script><!--ignore-->
+    <script>
+        $.ajax({
+            url: '/cisfrm/isLogin',
+            async: false,
+            success: function (data) {
+                if (data) {
+                    window.location.href = '/';
+                }
+            }
+        });
+    </script><!--ignore-->
+</head>
+<body>
+<div class="container-fluid login_logo">
+    <img src="images/login_logo1.jpg">
+</div>
+<div class="container-fluid login_con">
+    <img src="images/bg_1920.jpg" class="img_back">
+    <div class="container login_concon">
+        <img src="images/pc_1920.png" class="pc_back">
+        <form class="login_form">
+            <div class="login_infor">
+                <h4>风险监测信息系统-公开数据</h4>
+                <div class="login_user">
+                    <div>
+                        <i></i>
+                        <input type="text" placeholder="用户名" name="username">
+                    </div>
+                    <span></span>
+                </div>
+                <div class="login_user login_pass">
+                    <div>
+                        <i></i>
+                        <input type="password" placeholder="密码" name="password">
+                    </div>
+                    <span></span>
+                </div>
+                <div class="login_user login_code">
+                    <div class="f_l">
+                        <i></i>
+                        <input type="text" name="captcha" placeholder="验证码" value="" maxlength="4">
+                    </div>
+                    <img id="captcha" src="/cisfrm/captcha" class="f_l">
+                    <a id="changeCaptcha" href="javascript:void(0)">换一张</a><br>
+                    <h3 class="clear"></h3>
+                    <span></span>
+                </div>
+                <div class="login_btn">
+                    <input id="login_btn" type="button" value="登&nbsp;&nbsp;录">
+                </div>
+                <!--
+                <div class="login_repass">
+                    <a href="javascript:void(0)" id="forget">忘记密码?</a>
+                </div>
+                -->
+            </div>
+        </form>
+    </div>
+</div>
+<div class="container-fluid footer clear">
+    <span>中国保险保障基金有限责任公司 版权所有</span>
+</div>
+<script src="bower_components/json2/json2.js"></script>
+<script type="text/javascript" src="scripts/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        var $forget = $('#forget');
+        var $captcha = $('#captcha');
+        var $changeCaptcha = $('#changeCaptcha');
+        var $loginBtn = $('#login_btn');
+        var $username = $('input[name="username"]');
+        var $password = $('input[name="password"]');
+        var $captchaInput = $('input[name="captcha"]');
+        var $usernameWarn = $username.parent().next('span');
+        var $passwordWarn = $password.parent().next('span');
+        var $captchaWarn = $captchaInput.parent().siblings('span');
+        var changeImage = function () {
+            var timestamp = (new Date()).valueOf();
+            var url = $captcha.attr('src');
+            if (url.indexOf('?')) {
+                url = url.split('?')[0];
+            }
+            $captcha.attr('src', url + '?timestamp=' + timestamp);
+        };
+        $captcha.on('click', changeImage);
+        $changeCaptcha.on('click', changeImage);
+
+        function login() {
+            initWarn();
+            var username = $username.val();
+            var password = $password.val();
+            var captcha = $captchaInput.val();
+            var user = {
+                username: username,
+                password: password
+            };
+            var requestData = {
+                user: user,
+                captcha: captcha
+            };
+            var data = JSON.stringify(requestData);
+            var loginRequest = $.ajax({
+                url: '/cisfrm/login',
+                method: 'POST',
+                contentType: "application/json;",
+                dataType: 'json',
+                data: data
+            }).promise();
+
+            loginRequest.done(function (data) {
+                if (data.status < 0) {
+                    valid(data.errors);
+                } else if (data.status == 0) {
+                    window.location.href = "/index.html";
+                }
+            });
+
+//            $.post('/user/login', {
+//                'username': username,
+//                'password': password,
+//                'captcha': captcha
+//            }, function (data) {
+//                if (data) {
+//                    window.location.href = "/index.html";
+//                } else {
+//                    var i = 0;
+//                    var errors = data.errors;
+//                    var len = errors.length;
+//                    initVal();
+//                    for (; i < len; i++) {
+//                        choice(errors[i]);
+//                    }
+//                }
+//            });
+        }
+
+        function valid(errors) {
+            var i = 0, len = errors.length;
+            var messages = alertMessage(errors);
+            for (; i < len; i++) {
+                var msg = messages(i);
+                switch (errors[i].code) {
+                    case 40000:
+                        msg($usernameWarn);
+                        break;
+                    case 40001:
+                        msg($passwordWarn);
+                        break;
+                    case  40003:
+                        msg($captchaWarn);
+                        break;
+                    case 40004:
+                        msg($captchaWarn);
+                        break;
+                    case 40005:
+                        msg($usernameWarn);
+                        break;
+                    case 40006:
+                        msg($usernameWarn);
+                        break;
+                    case 40007:
+                        msg($passwordWarn);
+                        break;
+                }
+            }
+        }
+
+        function alertMessage(errors) {
+            return function (i) {
+                return function ($dom) {
+                    $dom.text(errors[i].msg);
+                }
+            }
+        }
+
+        $(window).on('keypress', function (event) {
+            switch (event.keyCode) {
+                case 13:
+
+                    login();
+                    break;
+            }
+        });
+
+        $loginBtn.on('click', login);
+
+        function initWarn() {
+            $usernameWarn.text('');
+            $passwordWarn.text('');
+            $captchaWarn.text('');
+        }
+
+
+        $forget.click(function () {
+        });
+    });
+</script>
+</body>
+</html>

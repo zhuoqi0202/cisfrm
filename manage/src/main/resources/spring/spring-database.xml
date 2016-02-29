@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/data/jpa
+       http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/data/repository
+       http://www.springframework.org/schema/data/repository/spring-repository.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close">
+        <property name="driverClassName" value="${jdbc.default.driverClass}"/>
+
+        <property name="url" value="${jdbc.default.url}"/>
+        <property name="username" value="${jdbc.default.username}"/>
+        <property name="password" value="${jdbc.default.password}"/>
+
+        <property name="initialSize" value="${jdbc.default.initialSize}"/>
+        <property name="minIdle" value="${jdbc.default.minIdle}"/>
+        <property name="maxActive" value="${jdbc.default.maxActive}"/>
+
+        <property name="maxWait" value="${jdbc.default.maxWait}"/>
+
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.default.timeBetweenEvictionRunsMillis}"/>
+
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.default.minEvictableIdleTimeMillis}"/>
+
+        <property name="removeAbandoned" value="${jdbc.default.removeAbandoned}"/>
+        <property name="removeAbandonedTimeout" value="${jdbc.default.removeAbandonedTimeout}"/>
+        <property name="validationQuery" value="${jdbc.default.validationQuery}"/>
+        <property name="testWhileIdle" value="${jdbc.default.testWhileIdle}"/>
+        <property name="testOnBorrow" value="${jdbc.default.testOnBorrow}"/>
+        <property name="testOnReturn" value="${jdbc.default.testOnReturn}"/>
+
+        <property name="filters" value="${jdbc.default.filters}"/>
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" id="jpaVendorAdapter">
+        <property name="databasePlatform" value="org.hibernate.dialect.SQLServer2008Dialect"/>
+        <property name="showSql" value="true"/>
+    </bean>
+
+    <bean class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean" id="entityManagerFactory">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
+        <property name="sharedCacheMode" value="ENABLE_SELECTIVE"/>
+        <property name="validationMode" value="NONE"/>
+        <property name="packagesToScan">
+            <list>
+                <value>com.sinosoft.cisfrm.manage.**.entity</value>
+            </list>
+        </property>
+        <property name="jpaPropertyMap">
+            <map>
+                <entry key="javax.persistence.schema-generation.database.action" value="none"/>
+            </map>
+        </property>
+    </bean>
+    <bean class="org.springframework.orm.jpa.JpaTransactionManager" id="jpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+    <tx:annotation-driven mode="proxy" proxy-target-class="false" transaction-manager="jpaTransactionManager"/>
+    <jpa:repositories base-package="com.sinosoft.cisfrm.manage.**.repository"
+                      entity-manager-factory-ref="entityManagerFactory"
+                      transaction-manager-ref="jpaTransactionManager"/>
+
+    <bean id="openEntityManagerInViewInterceptor"
+          class="org.springframework.orm.jpa.support.OpenEntityManagerInViewInterceptor">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+</beans>

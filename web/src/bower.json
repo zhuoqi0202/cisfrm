@@ -1,0 +1,23 @@
+{
+  "name": "cisfrm-manage-web",
+  "description": "",
+  "authors": [
+    "wangchg <wangchg@hotmail.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.11.3",
+    "jeasyui": "1.4.4",
+    "modernizr": "2.8.3",
+    "ztree_v3": "3.5.18",
+    "fontawesome": "4.5.0",
+    "json2": "*"
+  }
+}
