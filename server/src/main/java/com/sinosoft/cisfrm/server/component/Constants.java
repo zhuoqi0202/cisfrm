@@ -5,6 +5,8 @@ package com.sinosoft.cisfrm.server.component;
  */
 public interface Constants {
     String SESSION_USER = "CURRENT_USER";
-    String SESSION_KEY_IN_REDIS="SHIRO-SESSION";
+    String SESSION_KEY_IN_REDIS = "SHIRO-SESSION";
     String CAPTCHA = "captcha";
+    String DEFAULT_PASSWORD = "000000";
+    byte DEFAULT_STATUS = 1;
 }

@@ -6,9 +6,10 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/context
        http://www.springframework.org/schema/context/spring-context.xsd">
-    <context:component-scan base-package="com.sinosoft.cisfrm.server.component.shiro">
-        <context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
-    </context:component-scan>
+    <!--<context:component-scan base-package="com.sinosoft.cisfrm.server.component.shiro">-->
+        <!--<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>-->
+    <!--</context:component-scan>-->
+    <bean class="org.apache.shiro.crypto.SecureRandomNumberGenerator" id="randomNumberGenerator"/>
 
     <!-- 会话Cookie模板 -->
     <bean id="sessionIdCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
@@ -17,9 +18,9 @@
     </bean>
 
     <bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.HashedCredentialsMatcher">
-        <property name="hashAlgorithmName" value="SHA-256"/>
-        <property name="hashIterations" value="2"/>
-        <property name="storedCredentialsHexEncoded" value="true"/>
+        <property name="hashAlgorithmName" value="${algorithmName}"/>
+        <property name="hashIterations" value="${iterations}"/>
+        <property name="storedCredentialsHexEncoded" value="${storedCredentialsHexEncoded}"/>
     </bean>
 
     <bean id="sessionManager" class="org.apache.shiro.web.session.mgt.DefaultWebSessionManager">

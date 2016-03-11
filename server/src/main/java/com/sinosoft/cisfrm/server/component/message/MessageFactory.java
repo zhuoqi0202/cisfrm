@@ -15,43 +15,73 @@ import java.util.List;
 public class MessageFactory {
     private static final int SUCCESS = 0;
     private static final int FAIL = -1;
-    public static Message error(Collection<Error> errors){
-        Message result = new Message();
-        result.setStatus(FAIL);
+    private static final String FLAG = "_";
+
+    public static Message error(Collection<Error> errors) {
+        Message result = buildErrorMessage();
         result.setErrors(errors);
         return result;
     }
+
     public static Message error(Error... errors) {
-        return error(errors);
+        Message result = buildErrorMessage();
+        result.setErrors(Arrays.asList(errors));
+        return result;
     }
 
     public static Message error(Errors errors) {
-        Message result = new Message();
-        result.setStatus(FAIL);
+        Message result = buildErrorMessage();
         List<Error> errorList = Lists.newArrayList();
         Iterator<ObjectError> objectErrorIterable = errors.getAllErrors().iterator();
         while (objectErrorIterable.hasNext()) {
             String message = objectErrorIterable.next().getDefaultMessage();
-            String[] msg = message.split("_");
-            Error e = new Error();
-            e.setCode(Integer.valueOf(msg[0]));
-            e.setMsg(msg[1]);
-            errorList.add(e);
+            errorList.add(handle(message));
+        }
+        result.setErrors(errorList);
+        return result;
+    }
+
+    public static Message errorMessage(List<String> messages) {
+        Message result = buildErrorMessage();
+        Iterator<String> iterator = messages.iterator();
+        List<Error> errorList = Lists.newArrayList();
+        while (iterator.hasNext()) {
+            Error error = handle(iterator.next());
+            errorList.add(error);
         }
         result.setErrors(errorList);
         return result;
     }
 
     public static Message success() {
-        Message result = new Message();
-        result.setStatus(SUCCESS);
+        return buildSuccessMessage();
+    }
+
+    public static Message success(Object data) {
+        Message result = buildSuccessMessage();
+        result.setData(data);
         return result;
     }
 
-    public static Message success(Object obj) {
-        Message result = new Message();
-        result.setStatus(SUCCESS);
-        result.setData(obj);
-        return result;
+    private static Message buildSuccessMessage() {
+        return buildMessage(SUCCESS);
+    }
+
+    private static Message buildMessage(int status) {
+        Message message = new Message();
+        message.setStatus(status);
+        return message;
+    }
+
+    private static Message buildErrorMessage() {
+        return buildMessage(FAIL);
+    }
+
+    private static Error handle(String message) {
+        String[] msg = message.split(FLAG);
+        Error e = new Error();
+        e.setCode(Integer.valueOf(msg[0]));
+        e.setMsg(msg[1]);
+        return e;
     }
 }

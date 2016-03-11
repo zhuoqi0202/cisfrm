@@ -8,6 +8,7 @@ import com.sinosoft.cisfrm.server.component.Constants;
 import com.sinosoft.cisfrm.server.component.message.Error;
 import com.sinosoft.cisfrm.server.component.message.Message;
 import com.sinosoft.cisfrm.server.component.message.MessageFactory;
+import com.sinosoft.cisfrm.server.service.TestService;
 import com.sinosoft.cisfrm.server.validation.group.Second;
 import com.sinosoft.cisfrm.server.vo.LoginVo;
 import org.apache.log4j.LogManager;
@@ -97,17 +98,17 @@ public class HomeController {
                 subject.login(token);
             } catch (UnknownAccountException e) {
                 Error error = new Error();
-                error.setCode(40005);
+                error.setCode(50000);
                 error.setMsg("用户名不存在");
                 result.add(error);
             } catch (LockedAccountException e) {
                 Error error = new Error();
-                error.setCode(40006);
+                error.setCode(50001);
                 error.setMsg("锁定的用户");
                 result.add(error);
             } catch (IncorrectCredentialsException e) {
                 Error error = new Error();
-                error.setCode(40007);
+                error.setCode(50002);
                 error.setMsg("密码错误");
                 result.add(error);
             } finally {
@@ -138,6 +139,17 @@ public class HomeController {
     public Message logout() {
         Subject subject = SecurityUtils.getSubject();
         subject.logout();
+        return MessageFactory.success();
+    }
+
+    @Autowired
+    private TestService testService;
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    @ResponseBody
+    @ResponseStatus(HttpStatus.OK)
+    public Message test() {
+        testService.test(null);
         return MessageFactory.success();
     }
 

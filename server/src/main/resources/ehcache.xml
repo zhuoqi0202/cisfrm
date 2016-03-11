@@ -1,5 +1,18 @@
-<ehcache name="shiro">
-    <diskStore path="java.io.tmpdir/shiro-ehcache"/>
+<?xml version="1.0" encoding="UTF-8" ?>
+<ehcache>
+
+    <diskStore path="java.io.tmpdir"/>
+    <defaultCache
+            maxElementsInMemory="50000"
+            eternal="false"
+            timeToIdleSeconds="120"
+            timeToLiveSeconds="120"
+            overflowToDisk="false"
+            />
+    <cache name="entityCache"
+           eternal="false"
+           maxEntriesLocalHeap="50000"
+           timeToIdleSeconds="120" timeToLiveSeconds="120" overflowToDisk="false"/>
     <!-- 登录记录缓存  -->
     <cache name="passwordRetryCache"
            maxEntriesLocalHeap="2000"

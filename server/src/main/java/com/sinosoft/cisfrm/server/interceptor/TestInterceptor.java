@@ -18,8 +18,9 @@ public class TestInterceptor extends HandlerInterceptorAdapter {
     private static final Logger log = LogManager.getLogger(TestInterceptor.class);
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-        log.info(request.getRequestURI());
+//        log.info(request.getRequestURI());
         return true;
     }
+
 
 }

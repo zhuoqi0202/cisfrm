@@ -7,21 +7,7 @@
     <link rel="stylesheet" href="../../styles/themes/metro-blue/easyui.css">
     <link rel="stylesheet" href="../../bower_components/jeasyui/themes/icon.css">
     <link rel="stylesheet" href="../../bower_components/jeasyui/themes/color.css">
-    <style>
-        #form input.input_style {
-            width: 200px;
-            border-bottom: 1px solid #95B8E7;
-            border-top: 0;
-            border-left: 0;
-            border-right: 0;
-            background-color: transparent;
-        }
-
-        .seq-style {
-            display: inline-block;
-            height: 2px;
-        }
-    </style>
+    <link rel="stylesheet" href="../../styles/common.css">
 </head>
 <body>
 <table id="users_table"></table>
@@ -29,25 +15,30 @@
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true" id="add">添加</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true" id="edit">编辑</a>
     <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="remove">删除</a>
-    <input id="users_search">
+    <!--<input id="users_search">-->
 </div>
 <div id="dialog" title="对话框" style="padding: 15px;">
     <form id="form" method="post" novalidate>
+        <input type="hidden" name="moduleId">
         <div>
             <label>用户名：</label>
-            <input class="input_style" name="username" type="text" placeholder="请输入用户名">
+            <input class="input_style" name="username" type="text" placeholder="请输入用户名" required>
         </div>
         <div class="seq-style"></div>
         <div>
             <label>姓&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
-            <input class="input_style" name="nickname" type="text" placeholder="请输入姓名">
+            <input class="input_style" name="nickname" type="text" placeholder="请输入姓名" required>
         </div>
         <div class="seq-style"></div>
         <div>
             <label>密&nbsp;&nbsp;&nbsp;&nbsp;码：</label>
-            <input class="input_style" name="password" type="text" placeholder="请输入密码">
+            <input class="input_style" name="password" type="text" placeholder="可不填写,默认为000000">
         </div>
-
+        <div class="seq-style"></div>
+        <div>
+            <label>角&nbsp;&nbsp;&nbsp;&nbsp;色：</label>
+            <input class="input_style" name="roles">
+        </div>
         <div class="seq-style"></div>
         <div>
             <label>邮&nbsp;&nbsp;&nbsp;&nbsp;箱：</label>
@@ -62,6 +53,7 @@
 <script src="../../bower_components/jquery/dist/jquery.min.js"></script>
 <script src="../../bower_components/jeasyui/jquery.easyui.min.js"></script>
 <script src="../../bower_components/jeasyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="../../bower_components/json2/json2.js"></script>
 <script src="../../scripts/manage/user.js"></script>
 </body>
 </html>

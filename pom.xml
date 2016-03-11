@@ -6,12 +6,13 @@
   <packaging>pom</packaging>
   <version>1.0</version>
   <modules>
-    <module>manage</module>
     <module>server</module>
+    <module>common</module>
   </modules>
   <name>cisfrm Maven Webapp</name>
   <url>http://maven.apache.org</url>
   <properties>
+    <commons.validator.version>1.5.0</commons.validator.version>
     <spring.version>4.2.4.RELEASE</spring.version>
     <spring.security.version>4.0.3.RELEASE</spring.security.version>
     <spring.session.version>1.0.2.RELEASE</spring.session.version>
@@ -25,6 +26,7 @@
     <log4j.version>2.4.1</log4j.version>
     <guava.version>19.0</guava.version>
     <hibernate.version>5.1.0.Final</hibernate.version>
+    <hibernate.search.version>5.5.2.Final</hibernate.search.version>
     <commons-logging.version>1.2</commons-logging.version>
     <ehcache.version>2.10.1</ehcache.version>
     <druid.version>1.0.16</druid.version>
@@ -41,6 +43,9 @@
     <zookeeper.version>3.4.6</zookeeper.version>
     <zkclient.version>0.1</zkclient.version>
     <javaee.version>7.0</javaee.version>
+    <mybatis.version>3.3.1</mybatis.version>
+    <mysql.version>5.1.38</mysql.version>
+    <mybatis-spring.version>1.2.4</mybatis-spring.version>
 </properties>
   <dependencies>
     <dependency>

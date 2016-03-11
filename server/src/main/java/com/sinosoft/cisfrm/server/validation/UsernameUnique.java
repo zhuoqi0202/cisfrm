@@ -1,5 +1,7 @@
 package com.sinosoft.cisfrm.server.validation;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.ReportAsSingleViolation;

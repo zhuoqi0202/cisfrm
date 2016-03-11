@@ -1,0 +1,13 @@
+#form input.input_style {
+    width: 200px;
+    border-bottom: 1px solid #95B8E7;
+    border-top: 0;
+    border-left: 0;
+    border-right: 0;
+    background-color: transparent;
+}
+
+.seq-style {
+    display: inline-block;
+    height: 2px;
+}

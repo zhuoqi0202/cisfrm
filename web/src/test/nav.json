@@ -1,8 +1,24 @@
 [
-  { "name":"系统设置", "open":true, "iconSkin":"cog",
+  {
+    "name": "系统设置",
+    "open": true,
+    "iconSkin": "cog",
     "children": [
-      { "name":"用户管理","iconSkin":"users","path":"/views/manage/user.html"},
-      { "name":"机构管理","iconSkin":"company","path":"/views/manage/company.html"},
-      { "name":"地区管理","iconSkin":"map","path":"http://www.baidu.com"}
-    ]}
+      {
+        "name": "用户管理",
+        "iconSkin": "users",
+        "path": "/views/manage/user.html"
+      },
+      {
+        "name": "机构管理",
+        "iconSkin": "company",
+        "path": "/views/manage/company.html"
+      },
+      {
+        "name": "地区管理",
+        "iconSkin": "map",
+        "path": "/views/manage/area.html"
+      }
+    ]
+  }
 ]

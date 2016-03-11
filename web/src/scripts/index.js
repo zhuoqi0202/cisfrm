@@ -46,12 +46,13 @@ $(function () {
                 $tabs.tabs('add', {
                     title: text,
                     closable: true,
-                    content: '<iframe src="' + url + '" frameBorder="0" border="0"  style="width: 100%; height: 100%;"/>'
+                    content: '<iframe src="' + url + '" frameBorder="0" border="0" style="width: 100%;height: 99.6% " />'
                 });
             }
         }
 
         $tabs.tabs({
+            fit:true,
             onContextMenu: function (e, title) {
                 e.preventDefault();
                 $tabsMenu.menu('show', {

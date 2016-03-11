@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+<head>
+    <meta http-equiv="X-UA-COMPATIBLE" content="IE=Edge">
+    <meta charset="UTF-8">
+    <title>地区管理</title>
+    <link rel="stylesheet" href="../../styles/themes/metro-blue/easyui.css">
+    <link rel="stylesheet" href="../../bower_components/jeasyui/themes/icon.css">
+    <link rel="stylesheet" href="../../bower_components/jeasyui/themes/color.css">
+    <link rel="stylesheet" href="../../styles/common.css">
+</head>
+<body class="easyui-layout">
+<div region="east" title="查询参数" style="width: 350px;" split="true">
+    <table id="grid"></table>
+    <div id="grid_toolbar">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-search" plain="true" id="search">搜索</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-reload" plain="true" id="reset">重置</a>
+    </div>
+</div>
+<div region="center">
+    <table id="table"></table>
+    <div id="table_toolbar">
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true" id="add">添加</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true" id="edit">编辑</a>
+        <a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true" id="remove">删除</a>
+    </div>
+</div>
+<div id="dialog" title="对话框" style="padding: 15px;">
+    <form id="form" method="post" novalidate>
+        <input type="hidden" name="moduleId">
+        <div>
+            <label>地区代码：</label>
+            <input class="input_style" name="areaCode" type="text" placeholder="" required>
+        </div>
+        <div class="seq-style"></div>
+        <div>
+            <label>地区名称：</label>
+            <input class="input_style" name="areaName" type="text" placeholder="" required>
+        </div>
+        <div class="seq-style"></div>
+        <div>
+            <label>地区简称：</label>
+            <input class="input_style" name="singleName" type="text" placeholder="" required>
+        </div>
+        <div class="seq-style"></div>
+        <div>
+            <label>地区层级：</label>
+            <input class="input_style" name="areaLevel" type="text" placeholder="" required>
+        </div>
+        <div class="seq-style"></div>
+        <div>
+            <label>是否有效：</label>
+            <span>是:</span>
+            <input type="radio" checked="checked" name="validStatus" value="1"/>
+            <span>否:</span>
+            <input type="radio" name="validStatus" value="0">
+        </div>
+        <div id="buttons">
+            <a class="easyui-linkbutton" id="submit" href="javascript:void(0)" iconCls="icon-ok">提交</a>
+            <a class="easyui-linkbutton" id="cancel" href="javascript:void(0)" iconCls="icon-cancel">取消</a>
+        </div>
+    </form>
+</div>
+<script src="../../bower_components/jquery/dist/jquery.min.js"></script>
+<script src="../../bower_components/jeasyui/jquery.easyui.min.js"></script>
+<script src="../../bower_components/jeasyui/locale/easyui-lang-zh_CN.js"></script>
+<script src="../../bower_components/json2/json2.js"></script>
+<script src="../../scripts/manage/area.js"></script>
+</body>
+</html>

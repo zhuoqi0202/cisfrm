@@ -44,6 +44,8 @@
     <context:component-scan base-package="com.sinosoft.cisfrm" use-default-filters="false">
         <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
         <context:include-filter type="annotation" expression="com.sinosoft.cisfrm.server.annotation.Interceptor"/>
+        <context:include-filter type="annotation"
+                                expression="org.springframework.web.bind.annotation.ControllerAdvice"/>
     </context:component-scan>
     <!--
         <bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
@@ -115,6 +117,11 @@
             </array>
         </property>
     </bean>
+
+    <bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor">
+        <property name="validator" ref="validator"/>
+    </bean>
+
     <!-- 基于Cookie的本地化解析器 -->
     <bean id="localeResolver" class="org.springframework.web.servlet.i18n.CookieLocaleResolver">
         <property name="cookieMaxAge" value="604800"/>
@@ -125,7 +132,7 @@
     <!--<bean id="localeResolver" class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />-->
 
     <bean class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean" id="validator">
-        <property name="providerClass"  value="org.hibernate.validator.HibernateValidator"/>
+        <property name="providerClass" value="org.hibernate.validator.HibernateValidator"/>
         <property name="validationMessageSource" ref="messageSource"/>
     </bean>
 
